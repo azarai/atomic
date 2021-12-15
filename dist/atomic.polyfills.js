@@ -1,7 +1,7 @@
 /*!
  * atomicjs v4.4.1
  * A tiny, Promise-based vanilla JS Ajax/HTTP plugin with great browser support.
- * (c) 2020 Chris Ferdinandi
+ * (c) 2021 Chris Ferdinandi
  * MIT License
  * https://github.com/cferdinandi/atomic
  */
@@ -1316,7 +1316,13 @@ return Promise$1;
 		// Setup the Promise
 		var xhrPromise = new Promise(function (resolve, reject) {
 
-			// Setup our listener to process compeleted requests
+			request.onerror = function() {
+				reject({
+					status: 0,
+					statusText: "Network Error"
+				});
+			}
+			// Setup our listener to process completed requests
 			request.onreadystatechange = function () {
 
 				// Only run if the request is complete
