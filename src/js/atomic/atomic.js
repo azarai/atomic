@@ -135,6 +135,12 @@
 		// Setup the Promise
 		var xhrPromise = new Promise(function (resolve, reject) {
 
+			request.onerror = function() {
+				reject({
+					status: 0,
+					statusText: "Network Error"
+				});
+			}
 			// Setup our listener to process completed requests
 			request.onreadystatechange = function () {
 
